@@ -2,44 +2,17 @@ const express = require("express");
 
 const router = express.Router();
 
-// Route Handlers
-const getAllUsers = (req, res) => {
-  res.status(500).json({
-    status: "Internal Server Error",
-    message: "Route Not Defined",
-  });
-};
+const userController = require("../controllers/userController");
 
-const addNewUser = (req, res) => {
-  res.status(500).json({
-    status: "Internal Server Error",
-    message: "Route Not Defined",
-  });
-};
+router
+  .route("/")
+  .get(userController.getAllUsers)
+  .post(userController.addNewUser);
 
-const getOneUser = (req, res) => {
-  res.status(500).json({
-    status: "Internal Server Error",
-    message: "Route Not Defined",
-  });
-};
-
-const updateOneUser = (req, res) => {
-  res.status(500).json({
-    status: "Internal Server Error",
-    message: "Route Not Defined",
-  });
-};
-
-const deleteOneUser = (req, res) => {
-  res.status(500).json({
-    status: "Internal Server Error",
-    message: "Route Not Defined",
-  });
-};
-
-router.route("/").get(getAllUsers).post(addNewUser);
-
-router.route("/:id").get(getOneUser).patch(updateOneUser).delete(deleteOneUser);
+router
+  .route("/:id")
+  .get(userController.getOneUser)
+  .patch(userController.updateOneUser)
+  .delete(userController.deleteOneUser);
 
 module.exports = router;
